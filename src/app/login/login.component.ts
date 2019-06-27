@@ -18,6 +18,19 @@ export class LoginComponent implements OnInit {
   login()
   {
     console.log(this.username + " " + this.password);
+    this.servicioLogin.authenticateCredentials(this.username,this.password)
+    .subscribe((data:ServerResponse) => {
+      console.log(data);
+      alert(data.api_token);
+    });
   }
 
+}
+
+interface ServerResponse
+{
+  api_token:string;
+  http_status_code:BigInteger;
+  server_message:string;
+  data:JSON;
 }
