@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
-
+import { ServerResponse} from '../util/server-response'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,17 +20,14 @@ export class LoginComponent implements OnInit {
     console.log(this.username + " " + this.password);
     this.servicioLogin.authenticateCredentials(this.username,this.password)
     .subscribe((data:ServerResponse) => {
-      console.log(data);
-      alert(data.api_token);
+      let jsonResponse = JSON.parse(JSON.stringify(data.body) );
+      
+      //let api_token = jsonResponse.api_token;
+      //console.log(api_token);
+      console.log(jsonResponse);
+      alert(jsonResponse.api_token);
     });
   }
 
 }
 
-interface ServerResponse
-{
-  api_token:string;
-  http_status_code:BigInteger;
-  server_message:string;
-  data:JSON;
-}

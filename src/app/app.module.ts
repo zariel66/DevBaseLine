@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { TemplateModule } from './template/template.module';
 import {ButtonsModule,BsDatepickerModule} from 'ngx-bootstrap';
 import { LoginService } from './login/login.service';
+import { CustomHttpClient} from './util/custom-http-client';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,9 @@ import { LoginService } from './login/login.service';
     BsDatepickerModule.forRoot(),
     FormsModule
   ],
-  providers: [LoginService],
+  providers: [LoginService,
+    CustomHttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
